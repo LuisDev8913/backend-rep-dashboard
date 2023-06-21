@@ -1,4 +1,5 @@
-import { Table, Model, Column } from 'sequelize-typescript';
+import { Table, Model, Column, HasMany } from 'sequelize-typescript';
+import { WatchList } from 'src/watchlist/models/watchlist.model';
 
 @Table
 export class User extends Model {
@@ -13,4 +14,10 @@ export class User extends Model {
 
   @Column
   password: string;
+
+  @HasMany(() => WatchList, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  watchlist: WatchList[];
 }
