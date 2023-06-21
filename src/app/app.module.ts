@@ -8,6 +8,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from 'src/user/models/user.model';
 import { AuthModule } from 'src/auth/auth.module';
 import { TokenModule } from 'src/token/token.module';
+import { WatchlistModule } from 'src/watchlist/watchlist.module';
+import { WatchList } from 'src/watchlist/models/watchlist.model';
 
 @Module({
   imports: [
@@ -27,12 +29,13 @@ import { TokenModule } from 'src/token/token.module';
         database: configService.get('db_name'),
         synchronize: true,
         autoLoadModels: true,
-        models: [User],
+        models: [User, WatchList],
       }),
     }),
     UserModule,
     AuthModule,
     TokenModule,
+    WatchlistModule,
   ],
   controllers: [AppController],
   providers: [AppService],
